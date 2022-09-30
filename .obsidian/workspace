@@ -1,0 +1,143 @@
+{
+  "main": {
+    "id": "e705b9ed5851d4e3",
+    "type": "split",
+    "children": [
+      {
+        "id": "9840ecf2b895b471",
+        "type": "leaf",
+        "state": {
+          "type": "empty",
+          "state": {}
+        }
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "9afab8ca2f69839d",
+    "type": "split",
+    "children": [
+      {
+        "id": "6c2364d23749dc4e",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "a15854680d1b677f",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {}
+            }
+          },
+          {
+            "id": "fc2ef0b56d6b160e",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "tag:#C",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "10d1ad298a4248a7",
+            "type": "leaf",
+            "state": {
+              "type": "starred",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 274.5
+  },
+  "right": {
+    "id": "0ff2ec3c76fec8f6",
+    "type": "split",
+    "children": [
+      {
+        "id": "b5855840fb573a70",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "6fed0234a3539280",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "3f8ab15fdc4a2518",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "54fc39f83bac253e",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "4848d9ccd537d700",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {}
+            }
+          },
+          {
+            "id": "070156218cd02122",
+            "type": "leaf",
+            "state": {
+              "type": "git-view",
+              "state": {}
+            }
+          }
+        ],
+        "currentTab": 4
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "active": "9840ecf2b895b471",
+  "lastOpenFiles": [
+    "Documents/basics_of_C_1.md",
+    "basics_of_C_2.md",
+    "basics_of_C_1.md",
+    "2022-09-30.md",
+    "keuken.md",
+    "amygdallion.md",
+    "D.md",
+    "test2.md",
+    "test1.md"
+  ]
+}
