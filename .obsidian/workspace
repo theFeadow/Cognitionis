@@ -4,11 +4,15 @@
     "type": "split",
     "children": [
       {
-        "id": "9840ecf2b895b471",
+        "id": "0f0caa0a6882e4f9",
         "type": "leaf",
         "state": {
-          "type": "empty",
-          "state": {}
+          "type": "markdown",
+          "state": {
+            "file": "Documents/passing_by_ref_C.md",
+            "mode": "source",
+            "source": false
+          }
         }
       }
     ],
@@ -73,6 +77,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "Documents/passing_by_ref_C.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -89,6 +94,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "Documents/passing_by_ref_C.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -110,7 +116,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "Documents/passing_by_ref_C.md"
+              }
             }
           },
           {
@@ -126,18 +134,19 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 314.5
   },
-  "active": "9840ecf2b895b471",
+  "active": "0f0caa0a6882e4f9",
   "lastOpenFiles": [
-    "Documents/basics_of_C_1.md",
-    "basics_of_C_2.md",
-    "basics_of_C_1.md",
-    "2022-09-30.md",
-    "keuken.md",
-    "amygdallion.md",
-    "D.md",
-    "test2.md",
-    "test1.md"
+    "Documents/passing_by_ref_C.md",
+    "Documents/basics_of_C_2.md",
+    "Old/EECS/InfoSec/VPN's/what_is_a_vpn.md",
+    "Old/EECS/InfoSec/test_1.md",
+    "Old/EECS/InfoSec/VPN's/openVPN.md",
+    "Old/EECS/InfoSec/dns_leaks.md",
+    "Old/EECS/InfoSec/Linux Basics/list_command.md",
+    "Uni/Semester 7/gsm-usrp/openbts_source/openbts/README.APIs.md",
+    "Uni/Semester 7/gsm-usrp/dev/README.md",
+    "Documents/basics_of_C_1.md"
   ]
 }
