@@ -1,0 +1,820 @@
+<!doctype html>
+<html>
+    <head>
+        <title>blender_rendering</title>
+        <meta charset='utf-8'/>
+        <style>
+ .ͼ1.cm-editor.cm-focused {outline: 1px dotted #212121;}
+.ͼ1.cm-editor {position: relative !important; box-sizing: border-box; display: flex !important; flex-direction: column;}
+.ͼ1 .cm-scroller {display: flex !important; align-items: flex-start !important; font-family: monospace; line-height: 1.4; height: 100%; overflow-x: auto; position: relative; z-index: 0;}
+.ͼ1 .cm-content[contenteditable=true] {-webkit-user-modify: read-write-plaintext-only;}
+.ͼ1 .cm-content {margin: 0; flex-grow: 2; min-height: 100%; display: block; white-space: pre; word-wrap: normal; box-sizing: border-box; padding: 4px 0; outline: none;}
+.ͼ1 .cm-lineWrapping {white-space: pre-wrap; white-space: break-spaces; word-break: break-word; overflow-wrap: anywhere;}
+.ͼ2 .cm-content {caret-color: black;}
+.ͼ3 .cm-content {caret-color: white;}
+.ͼ1 .cm-line {display: block; padding: 0 2px 0 4px;}
+.ͼ1 .cm-selectionLayer {z-index: -1; contain: size style;}
+.ͼ1 .cm-selectionBackground {position: absolute;}
+.ͼ2 .cm-selectionBackground {background: #d9d9d9;}
+.ͼ3 .cm-selectionBackground {background: #222;}
+.ͼ2.cm-focused .cm-selectionBackground {background: #d7d4f0;}
+.ͼ3.cm-focused .cm-selectionBackground {background: #233;}
+.ͼ1 .cm-cursorLayer {z-index: 100; contain: size style; pointer-events: none;}
+.ͼ1.cm-focused .cm-cursorLayer {animation: steps(1) cm-blink 1.2s infinite;}
+@keyframes cm-blink {50% {visibility: hidden;}}
+@keyframes cm-blink2 {50% {visibility: hidden;}}
+.ͼ1 .cm-cursor, .ͼ1 .cm-dropCursor {position: absolute; border-left: 1.2px solid black; margin-left: -0.6px; pointer-events: none;}
+.ͼ1 .cm-cursor {display: none;}
+.ͼ3 .cm-cursor {border-left-color: #444;}
+.ͼ1.cm-focused .cm-cursor {display: block;}
+.ͼ2 .cm-activeLine {background-color: #f3f9ff;}
+.ͼ3 .cm-activeLine {background-color: #223039;}
+.ͼ2 .cm-specialChar {color: red;}
+.ͼ3 .cm-specialChar {color: #f78;}
+.ͼ1 .cm-gutters {display: flex; height: 100%; box-sizing: border-box; left: 0; z-index: 200;}
+.ͼ2 .cm-gutters {background-color: #f5f5f5; color: #6c6c6c; border-right: 1px solid #ddd;}
+.ͼ3 .cm-gutters {background-color: #333338; color: #ccc;}
+.ͼ1 .cm-gutter {display: flex !important; flex-direction: column; flex-shrink: 0; box-sizing: border-box; min-height: 100%; overflow: hidden;}
+.ͼ1 .cm-gutterElement {box-sizing: border-box;}
+.ͼ1 .cm-lineNumbers .cm-gutterElement {padding: 0 3px 0 5px; min-width: 20px; text-align: right; white-space: nowrap;}
+.ͼ2 .cm-activeLineGutter {background-color: #e2f2ff;}
+.ͼ3 .cm-activeLineGutter {background-color: #222227;}
+.ͼ1 .cm-panels {box-sizing: border-box; position: sticky; left: 0; right: 0;}
+.ͼ2 .cm-panels {background-color: #f5f5f5; color: black;}
+.ͼ2 .cm-panels-top {border-bottom: 1px solid #ddd;}
+.ͼ2 .cm-panels-bottom {border-top: 1px solid #ddd;}
+.ͼ3 .cm-panels {background-color: #333338; color: white;}
+.ͼ1 .cm-tab {display: inline-block; overflow: hidden; vertical-align: bottom;}
+.ͼ1 .cm-widgetBuffer {vertical-align: text-top; height: 1em; display: inline;}
+.ͼ1 .cm-placeholder {color: #888; display: inline-block; vertical-align: top;}
+.ͼ1 .cm-button {vertical-align: middle; color: inherit; font-size: 70%; padding: .2em 1em; border-radius: 1px;}
+.ͼ2 .cm-button:active {background-image: linear-gradient(#b4b4b4, #d0d3d6);}
+.ͼ2 .cm-button {background-image: linear-gradient(#eff1f5, #d9d9df); border: 1px solid #888;}
+.ͼ3 .cm-button:active {background-image: linear-gradient(#111, #333);}
+.ͼ3 .cm-button {background-image: linear-gradient(#393939, #111); border: 1px solid #888;}
+.ͼ1 .cm-textfield {vertical-align: middle; color: inherit; font-size: 70%; border: 1px solid silver; padding: .2em .5em;}
+.ͼ2 .cm-textfield {background-color: white;}
+.ͼ3 .cm-textfield {border: 1px solid #555; background-color: inherit;}
+.ͼ1 .cm-foldPlaceholder {background-color: #eee; border: 1px solid #ddd; color: #888; border-radius: .2em; margin: 0 1px; padding: 0 1px; cursor: pointer;}
+.ͼ1 .cm-foldGutter span {padding: 0 1px; cursor: pointer;}
+.ͼ3e .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼ3d .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼ3c .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼ3b .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼ3a .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼ39 .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼ38 .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼ37 .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼ36 .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼ35 .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼ34 .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼ33 .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼ32 .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼ31 .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼ30 .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼ2z .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼ2y .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼ2x .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼ2w .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼ2v .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼ2u .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼ2t .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼ2s .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼ2r .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼ2q .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼ2p .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼ2o .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼ2n .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼ2m .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼ2l .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼ2k .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼ2j .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼ2i .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼ2h .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼ2g .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼ2f .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼ2e .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼ2d .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼ2c .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼ2b .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼ2a .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼ29 .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼ28 .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼ27 .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼ26 .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼ25 .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼ24 .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼ23 .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼ22 .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼ21 .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼ20 .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼ1z .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼ1y .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼ1x .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼ1w .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼ1v .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼ1u .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼ1t .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼ1s .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼ1r .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼ1q .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼ1p .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼ1o .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼ1n .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼ1m .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼ1l .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼ1k .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼ1j .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼ1i .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼ1h .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼ1g .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼ1f .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼ1e .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼ1d .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼ1c .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼ1b .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼ1a .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼ19 .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼ18 .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼ17 .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼ16 .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼ15 .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼ14 .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼ13 .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼ12 .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼ11 .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼ10 .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼz .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼy .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼx .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼw .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼv .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼu .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼt .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼs .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼr .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+.ͼq .cm-content {white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;}
+   
+.pandoc-plugin-error {
+    color: red;
+}
+ /** Live Preview padding fixes, specifically for DataviewJS custom HTML elements. */
+.is-live-preview .block-language-dataviewjs > p, .is-live-preview .block-language-dataviewjs > span {
+    line-height: 1.0;
+}
+
+/*****************/
+/** Table Views **/
+/*****************/
+
+/* List View Default Styling; rendered internally as a table. */
+.table-view-table {
+    width: 100%;
+}
+
+.table-view-table > thead > tr, .table-view-table > tbody > tr {
+    margin-top: 1em;
+    margin-bottom: 1em;
+    text-align: left;
+}
+
+.table-view-table > tbody > tr:hover {
+    background-color: var(--text-selection) !important;
+}
+
+.table-view-table > thead > tr > th {
+    font-weight: 700;
+    font-size: larger;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: solid;
+
+    max-width: 100%;
+}
+
+.table-view-table > tbody > tr > td {
+    text-align: left;
+    border: none;
+    font-weight: 400;
+    max-width: 100%;
+}
+
+.table-view-table ul, .table-view-table ol {
+    margin-block-start: 0.2em !important;
+    margin-block-end: 0.2em !important;
+}
+
+/** Rendered value styling for any view. */
+.dataview-result-list-root-ul {
+    padding: 0em !important;
+    margin: 0em !important;
+}
+
+.dataview-result-list-ul {
+    margin-block-start: 0.2em !important;
+    margin-block-end: 0.2em !important;
+}
+
+/** Generic grouping styling. */
+.dataview.result-group {
+    padding-left: 8px;
+}
+
+/*******************/
+/** Inline Fields **/
+/*******************/
+
+.dataview.inline-field-key {
+    padding-left: 8px;
+    padding-right: 8px;
+    font-family: var(--font-monospace);
+    background-color: var(--background-primary-alt);
+    color: var(--text-nav-selected);
+}
+
+.dataview.inline-field-value {
+    padding-left: 8px;
+    padding-right: 8px;
+    font-family: var(--font-monospace);
+    background-color: var(--background-secondary-alt);
+    color: var(--text-nav-selected);
+}
+
+.dataview.inline-field-standalone-value {
+    padding-left: 8px;
+    padding-right: 8px;
+    font-family: var(--font-monospace);
+    background-color: var(--background-secondary-alt);
+    color: var(--text-nav-selected);
+}
+
+/***************/
+/** Task View **/
+/***************/
+
+.dataview.task-list-item, .dataview.task-list-basic-item {
+    margin-top: 3px;
+    margin-bottom: 3px;
+    transition: 0.4s;
+}
+
+.dataview.task-list-item:hover, .dataview.task-list-basic-item:hover {
+    background-color: var(--text-selection);
+    box-shadow: -40px 0 0 var(--text-selection);
+    cursor: pointer;
+}
+
+/*****************/
+/** Error Views **/
+/*****************/
+
+div.dataview-error-box {
+    width: 100%;
+    min-height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 4px dashed var(--background-secondary);
+}
+
+.dataview-error-message {
+    color: var(--text-muted);
+    text-align: center;
+}
+
+/*************************/
+/** Additional Metadata **/
+/*************************/
+
+.dataview.small-text {
+    font-size: smaller;
+    color: var(--text-muted);
+    margin-left: 3px;
+}
+
+.dataview.small-text::before {
+	content: "(";
+}
+
+.dataview.small-text::after {
+	content: ")";
+}
+ @keyframes loading {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loading>svg {
+  animation: 2s linear infinite loading;
+  transform-origin: 50% 50%;
+  display: inline-block;
+}
+
+.obsidian-git-center {
+  margin: auto;
+  width: 50%;
+}
+
+.obsidian-git-textarea {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.obsidian-git-center-button {
+  display: block;
+  margin: 20px auto;
+}
+
+.tooltip.mod-left {
+  overflow-wrap: break-word;
+}
+
+.tooltip.mod-right {
+  overflow-wrap: break-word;
+}
+
+.obsidian-git-shortcuts {
+  margin: 10px;
+}
+
+.diff-err {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.diff-err-sign {
+  font-size: 2em;
+}
+
+.workspace-leaf-content[data-type="diff-view"] .d2h-d-none {
+  display: none;
+}
+
+.workspace-leaf-content[data-type="diff-view"] .d2h-wrapper {
+  text-align: left;
+}
+
+.workspace-leaf-content[data-type="diff-view"] .d2h-file-header {
+  background-color: var(--background-primary);
+  border-bottom: 1px solid var(--interactive-accent);
+  font-family: var(--font-monospace);
+  height: 35px;
+  padding: 5px 10px;
+}
+
+.workspace-leaf-content[data-type="diff-view"] .d2h-file-header,
+.workspace-leaf-content[data-type="diff-view"] .d2h-file-stats {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.workspace-leaf-content[data-type="diff-view"] .d2h-file-stats {
+  font-size: 14px;
+  margin-left: auto;
+}
+
+.workspace-leaf-content[data-type="diff-view"] .d2h-lines-added {
+  border: 1px solid #b4e2b4;
+  border-radius: 5px 0 0 5px;
+  color: #399839;
+  padding: 2px;
+  text-align: right;
+  vertical-align: middle;
+}
+
+.workspace-leaf-content[data-type="diff-view"] .d2h-lines-deleted {
+  border: 1px solid #e9aeae;
+  border-radius: 0 5px 5px 0;
+  color: #c33;
+  margin-left: 1px;
+  padding: 2px;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.workspace-leaf-content[data-type="diff-view"] .d2h-file-name-wrapper {
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 15px;
+  width: 100%;
+}
+
+.workspace-leaf-content[data-type="diff-view"] .d2h-file-name {
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.workspace-leaf-content[data-type="diff-view"] .d2h-file-wrapper {
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 3px;
+  margin-bottom: 1em;
+}
+
+.workspace-leaf-content[data-type="diff-view"] .d2h-file-collapse {
+  -webkit-box-pack: end;
+  -ms-flex-pack: end;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 3px;
+  cursor: pointer;
+  display: none;
+  font-size: 12px;
+  justify-content: flex-end;
+  padding: 4px 8px;
+}
+
+.workspace-leaf-content[data-type="diff-view"] .d2h-file-collapse.d2h-selected {
+  background-color: #c8e1ff;
+}
+
+.workspace-leaf-content[data-type="diff-view"] .d2h-file-collapse-input {
+  margin: 0 4px 0 0;
+}
+
+.workspace-leaf-content[data-type="diff-view"] .d2h-diff-table {
+  border-collapse: collapse;
+  font-family: Menlo, Consolas, monospace;
+  font-size: 13px;
+  width: 100%;
+}
+
+.workspace-leaf-content[data-type="diff-view"] .d2h-files-diff {
+  width: 100%;
+}
+
+.workspace-leaf-content[data-type="diff-view"] .d2h-file-diff {
+  overflow-y: hidden;
+}
+
+.workspace-leaf-content[data-type="diff-view"] .d2h-file-side-diff {
+  display: inline-block;
+  margin-bottom: -8px;
+  margin-right: -4px;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  width: 50%;
+}
+
+.workspace-leaf-content[data-type="diff-view"] .d2h-code-line {
+  padding: 0 8em;
+}
+
+.workspace-leaf-content[data-type="diff-view"] .d2h-code-line,
+.workspace-leaf-content[data-type="diff-view"] .d2h-code-side-line {
+  display: inline-block;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  white-space: nowrap;
+  width: 100%;
+}
+
+.workspace-leaf-content[data-type="diff-view"] .d2h-code-side-line {
+  padding: 0 4.5em;
+}
+
+.workspace-leaf-content[data-type="diff-view"] .d2h-code-line-ctn {
+  word-wrap: normal;
+  background: none;
+  display: inline-block;
+  padding: 0;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+  vertical-align: middle;
+  white-space: pre;
+  width: 100%;
+}
+
+.theme-light .workspace-leaf-content[data-type="diff-view"] .d2h-code-line del,
+.theme-light .workspace-leaf-content[data-type="diff-view"] .d2h-code-side-line del {
+  background-color: #ffb6ba;
+}
+
+.theme-dark .workspace-leaf-content[data-type="diff-view"] .d2h-code-line del,
+.theme-dark .workspace-leaf-content[data-type="diff-view"] .d2h-code-side-line del {
+  background-color: #8d232881;
+}
+
+.workspace-leaf-content[data-type="diff-view"] .d2h-code-line del,
+.workspace-leaf-content[data-type="diff-view"] .d2h-code-line ins,
+.workspace-leaf-content[data-type="diff-view"] .d2h-code-side-line del,
+.workspace-leaf-content[data-type="diff-view"] .d2h-code-side-line ins {
+  border-radius: 0.2em;
+  display: inline-block;
+  margin-top: -1px;
+  text-decoration: none;
+  vertical-align: middle;
+}
+
+.theme-light .workspace-leaf-content[data-type="diff-view"] .d2h-code-line ins,
+.theme-light .workspace-leaf-content[data-type="diff-view"] .d2h-code-side-line ins {
+  background-color: #97f295;
+  text-align: left;
+}
+
+.theme-dark .workspace-leaf-content[data-type="diff-view"] .d2h-code-line ins,
+.theme-dark .workspace-leaf-content[data-type="diff-view"] .d2h-code-side-line ins {
+  background-color: #1d921996;
+  text-align: left;
+}
+
+.workspace-leaf-content[data-type="diff-view"] .d2h-code-line-prefix {
+  word-wrap: normal;
+  background: none;
+  display: inline;
+  padding: 0;
+  white-space: pre;
+}
+
+.workspace-leaf-content[data-type="diff-view"] .line-num1 {
+  float: left;
+}
+
+.workspace-leaf-content[data-type="diff-view"] .line-num1,
+.workspace-leaf-content[data-type="diff-view"] .line-num2 {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  overflow: hidden;
+  padding: 0 0.5em;
+  text-overflow: ellipsis;
+  width: 3.5em;
+}
+
+.workspace-leaf-content[data-type="diff-view"] .line-num2 {
+  float: right;
+}
+
+.workspace-leaf-content[data-type="diff-view"] .d2h-code-linenumber {
+  background-color: var(--background-primary);
+  border: solid var(--background-modifier-border);
+  border-width: 0 1px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  color: var(--text-muted);
+  cursor: pointer;
+  display: inline-block;
+  position: absolute;
+  text-align: right;
+  width: 7.5em;
+}
+
+.workspace-leaf-content[data-type="diff-view"] .d2h-code-linenumber:after {
+  content: "\200b";
+}
+
+.workspace-leaf-content[data-type="diff-view"] .d2h-code-side-linenumber {
+  background-color: var(--background-primary);
+  border: solid var(--background-modifier-border);
+  border-width: 0 1px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  color: var(--text-muted);
+  cursor: pointer;
+  display: inline-block;
+  overflow: hidden;
+  padding: 0 0.5em;
+  position: absolute;
+  text-align: right;
+  text-overflow: ellipsis;
+  width: 4em;
+}
+
+.workspace-leaf-content[data-type="diff-view"] .d2h-diff-tbody tr {
+  position: relative;
+}
+
+.workspace-leaf-content[data-type="diff-view"] .d2h-code-side-linenumber:after {
+  content: "\200b";
+}
+
+.workspace-leaf-content[data-type="diff-view"] .d2h-code-side-emptyplaceholder,
+.workspace-leaf-content[data-type="diff-view"] .d2h-emptyplaceholder {
+  background-color: var(--background-primary);
+  border-color: var(--background-modifier-border);
+}
+
+.workspace-leaf-content[data-type="diff-view"] .d2h-code-line-prefix,
+.workspace-leaf-content[data-type="diff-view"] .d2h-code-linenumber,
+.workspace-leaf-content[data-type="diff-view"] .d2h-code-side-linenumber,
+.workspace-leaf-content[data-type="diff-view"] .d2h-emptyplaceholder {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.workspace-leaf-content[data-type="diff-view"] .d2h-code-linenumber,
+.workspace-leaf-content[data-type="diff-view"] .d2h-code-side-linenumber {
+  direction: rtl;
+}
+
+.theme-light .workspace-leaf-content[data-type="diff-view"] .d2h-del {
+  background-color: #fee8e9;
+  border-color: #e9aeae;
+}
+
+.theme-light .workspace-leaf-content[data-type="diff-view"] .d2h-ins {
+  background-color: #dfd;
+  border-color: #b4e2b4;
+}
+
+.theme-dark .workspace-leaf-content[data-type="diff-view"] .d2h-del {
+  background-color: #521b1d83;
+  border-color: #691d1d73;
+}
+
+.theme-dark .workspace-leaf-content[data-type="diff-view"] .d2h-ins {
+  background-color: rgba(30, 71, 30, 0.5);
+  border-color: #13501381;
+}
+
+.workspace-leaf-content[data-type="diff-view"] .d2h-info {
+  background-color: var(--background-primary);
+  border-color: var(--background-modifier-border);
+  color: var(--text-normal);
+}
+
+.theme-light .workspace-leaf-content[data-type="diff-view"] .d2h-file-diff .d2h-del.d2h-change {
+  background-color: #fdf2d0;
+}
+
+.theme-dark .workspace-leaf-content[data-type="diff-view"] .d2h-file-diff .d2h-del.d2h-change {
+  background-color: #55492480;
+}
+
+.theme-light .workspace-leaf-content[data-type="diff-view"] .d2h-file-diff .d2h-ins.d2h-change {
+  background-color: #ded;
+}
+
+.theme-dark .workspace-leaf-content[data-type="diff-view"] .d2h-file-diff .d2h-ins.d2h-change {
+  background-color: rgba(37, 78, 37, 0.418);
+}
+
+.workspace-leaf-content[data-type="diff-view"] .d2h-file-list-wrapper {
+  margin-bottom: 10px;
+}
+
+.workspace-leaf-content[data-type="diff-view"] .d2h-file-list-wrapper a {
+  color: #3572b0;
+  text-decoration: none;
+}
+
+.workspace-leaf-content[data-type="diff-view"] .d2h-file-list-wrapper a:visited {
+  color: #3572b0;
+}
+
+.workspace-leaf-content[data-type="diff-view"] .d2h-file-list-header {
+  text-align: left;
+}
+
+.workspace-leaf-content[data-type="diff-view"] .d2h-file-list-title {
+  font-weight: 700;
+}
+
+.workspace-leaf-content[data-type="diff-view"] .d2h-file-list-line {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  text-align: left;
+}
+
+.workspace-leaf-content[data-type="diff-view"] .d2h-file-list {
+  display: block;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.workspace-leaf-content[data-type="diff-view"] .d2h-file-list>li {
+  border-bottom: 1px solid var(--background-modifier-border);
+  margin: 0;
+  padding: 5px 10px;
+}
+
+.workspace-leaf-content[data-type="diff-view"] .d2h-file-list>li:last-child {
+  border-bottom: none;
+}
+
+.workspace-leaf-content[data-type="diff-view"] .d2h-file-switch {
+  cursor: pointer;
+  display: none;
+  font-size: 10px;
+}
+
+.workspace-leaf-content[data-type="diff-view"] .d2h-icon {
+  fill: currentColor;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+.workspace-leaf-content[data-type="diff-view"] .d2h-deleted {
+  color: #c33;
+}
+
+.workspace-leaf-content[data-type="diff-view"] .d2h-added {
+  color: #399839;
+}
+
+.workspace-leaf-content[data-type="diff-view"] .d2h-changed {
+  color: #d0b44c;
+}
+
+.workspace-leaf-content[data-type="diff-view"] .d2h-moved {
+  color: #3572b0;
+}
+
+.workspace-leaf-content[data-type="diff-view"] .d2h-tag {
+  background-color: var(--background-primary);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 10px;
+  margin-left: 5px;
+  padding: 0 2px;
+}
+
+.workspace-leaf-content[data-type="diff-view"] .d2h-deleted-tag {
+  border: 2px solid #c33;
+}
+
+.workspace-leaf-content[data-type="diff-view"] .d2h-added-tag {
+  border: 1px solid #399839;
+}
+
+.workspace-leaf-content[data-type="diff-view"] .d2h-changed-tag {
+  border: 1px solid #d0b44c;
+}
+
+.workspace-leaf-content[data-type="diff-view"] .d2h-moved-tag {
+  border: 1px solid #3572b0;
+} @charset "UTF-8";.commit-msg.svelte-1nrj6yk.svelte-1nrj6yk{width:100%;min-height:33px;height:30px;resize:vertical;padding:7px 5px;background-color:var(--background-modifier-form-field)}.file-view.svelte-1nrj6yk.svelte-1nrj6yk{margin-left:5px}.opener.svelte-1nrj6yk.svelte-1nrj6yk{padding-left:10px;padding-bottom:2px;padding-top:2px;display:flex;justify-content:space-between;align-items:center}.opener.svelte-1nrj6yk .collapse-icon.svelte-1nrj6yk::after{content:" "}.opener.svelte-1nrj6yk div.svelte-1nrj6yk{display:flex}.opener.svelte-1nrj6yk svg.svelte-1nrj6yk{transform:rotate(-90deg)}.opener.open.svelte-1nrj6yk svg.svelte-1nrj6yk{transform:rotate(0)}.git-view-body.svelte-1nrj6yk.svelte-1nrj6yk{overflow-y:auto;padding-left:10px}main.svelte-1nrj6yk.svelte-1nrj6yk{display:flex;flex-direction:column;height:100%;overflow-y:hidden}.nav-buttons-container.svelte-1nrj6yk.svelte-1nrj6yk{justify-content:space-between}.group.svelte-1nrj6yk.svelte-1nrj6yk{display:flex} main.svelte-w0sx5s.svelte-w0sx5s.svelte-w0sx5s{cursor:pointer;background-color:var(--background-secondary);border-radius:4px;width:98%;display:flex;justify-content:space-between;font-size:0.8rem;margin-bottom:2px}main.svelte-w0sx5s .path.svelte-w0sx5s.svelte-w0sx5s{color:var(--text-muted);padding-top:2px;padding-left:10px;padding-bottom:2px;white-space:nowrap;max-width:75%;overflow:hidden;text-overflow:ellipsis}main.svelte-w0sx5s.svelte-w0sx5s.svelte-w0sx5s:hover{color:var(--nav-item-color-active);background-color:var(--nav-item-background-active);font-weight:var(--nav-item-weight-active)}main.svelte-w0sx5s .tools.svelte-w0sx5s.svelte-w0sx5s{display:flex;align-items:center}main.svelte-w0sx5s .tools .type.svelte-w0sx5s.svelte-w0sx5s{height:16px;width:16px;margin:0;display:flex;align-items:center;justify-content:center}main.svelte-w0sx5s .tools .type[data-type=M].svelte-w0sx5s.svelte-w0sx5s{color:orange}main.svelte-w0sx5s .tools .type[data-type=D].svelte-w0sx5s.svelte-w0sx5s{color:red}main.svelte-w0sx5s .tools .buttons.svelte-w0sx5s.svelte-w0sx5s{display:flex}main.svelte-w0sx5s .tools .buttons.svelte-w0sx5s>.svelte-w0sx5s{color:var(--text-faint);height:16px;width:16px;margin:0;transition:all 0.2s;border-radius:2px;margin-right:1px}main.svelte-w0sx5s .tools .buttons.svelte-w0sx5s>.svelte-w0sx5s:hover{color:var(--text-normal);background-color:var(--interactive-accent)}undefined
+</style>
+    </head>
+    <body>
+
+<h1 data-heading="Basics of Rendering in Blender">Basics of Rendering in Blender</h1>
+<p>In Blender, there are different "views" where things are "rendered".</p>
+<p>There is, of course, the "final output render" (F12) that provides a final image or animation.</p>
+<p>However, there is also the rendering that happens in real-time in the viewport that allows the user to view and manipulate their objects and have these manipulations be immediately reflected on the object in the viewport.</p>
+<p>Naturally, the "final output render" should in general be more "precise"/"detailed" than the one in the viewport. At the end of the day, the real-time rendering in the viewport is only for the user to know how their object(s) and their setup will more or less look like when properly rendered.</p>
+<p>Having said that, there are 2 main <strong>render engines</strong> that come by default with Blender, these are:</p>
+<ul>
+<li>Eevee</li>
+<li>Cycles</li>
+</ul>
+<p>Each has its advantages and disadvantages. And each of them can be used for <strong>both</strong> viewport and final rendering. In what follows, the performance and action of these 2 rendering engines will be briefly discussed.</p>
+<hr>
+<h4 data-heading="Eevee">Eevee</h4>
+<p>Eevee renders by basically faking. It doesn't do any real ray-tracing or such; it has other ways of processing the scene to produce something that is more than decent for a lot of purposes and use cases. However, Eevee renders will lack realism, unless specifically configured with complex settings to do what it needs to produce something that more resembles a truly ray-traced scene (see [prs]). Even then, Eevee will still fall short of accomplishing the realism attained by other render engines.</p>
+<p>Eevee is great for doing graphic designs, cartoon-ish renders, or any scene that doesn't require the high levels of realism attained by true ray-tracing.</p>
+<p>Finally, the biggest advantage of Eevee is that it is <strong>truly</strong> a real-time renderer. Which means that Eevee allows the user to manipulate the viewport in 'Rendered' mode and work on the scene while looking at exactly how the scene will look like after rendering without any delay or lag.</p>
+<hr>
+<h4 data-heading="Cycles">Cycles</h4>
+<p>Cycles performs true ray-tracing during rendering.</p>
+<p>While Eevee requires special setup to make renders look somewhat realistic, Cycles outputs realistic renders by default.</p>
+<p>On the other hand, Cycles is computationally intensive and does not - by default - work as a real-time renderer like Eevee. Final rendering using Cycles takes a lot longer than Eevee, and working in 'Rendered' mode in the viewport with Cycles requires the view to re-render every time the camera angle is changed!</p>
+<p>Cycles makes use of a metric called 'Samples (per unit pixel)' in order to know the sufficient resolution quality to which to render the objects in a scene.</p>
+<p><img alt="image-20221006134845168.png" src="image-20221006134845168.png" class="internal-embed"></p>
+<p>As seen in the image, the number of 'Samples' can be set separately for the viewport and the final rendered output. If Cycles is used for viewport rendering, a few changes to the above configuration can help achieve a better workflow, for instance:</p>
+<ul>
+<li>It is wise to reduce the maximum number of samples in viewport rendering to something like 128, to allow for a faster workflow with less lag, since full-resolution is not typically needed during modelling and designing.</li>
+<li>Turning on 'Denoise' in viewport rendering is also a great idea to get rid of the "pixelations".</li>
+</ul>
+<blockquote>
+<p>Remember to set the 'Device' to the GPU and not leave it as the CPU!!</p>
+</blockquote>
+<hr>
+<h4 data-heading="Pseudo-Eevee">Pseudo-Eevee</h4>
+<p>It would be great if one can work in the viewport using Eevee and render using Cycles, without continuously switching between the 2 configurations. Well, that can be - in a way - accomplished using the 'Material Preview' mode!</p>
+<p><img alt="image-20221006142932442.png" src="image-20221006142932442.png" class="internal-embed"></p>
+<p>By setting the mode to 'Material Preview' and turning on the 'Scene Lights' and 'Scene World' options, one can navigate the viewport seamleslly as if in Eevee, even if the render engine is set to Cycles!</p>
+<p><img alt="image-20221006143309181.png" src="image-20221006143309181.png" class="internal-embed"></p>
+<p><img alt="image-20221006143320238.png" src="image-20221006143320238.png" class="internal-embed"></p>
+<p>The 2 images above are not copies of the same view! The upper one is taken from the 'Material Preview' viewport using Cycles, and the lower one is taken from the 'Rendered' viewport using Eevee! As one can see, they are pretty much identical.</p>
+<p>Which means, one can set the render engine to Cycles and switch to 'Material Preview' mode in order to work in the viewport as if in Eevee, sacrificing realism during editing in order to benefit from the fluidity that Eevee provides!</p>
+<hr>
+<h4 data-heading="Bibliography">Bibliography</h4>
+<p>[prs]: <a aria-label-position="top" aria-label="https://www.youtube.com/watch?v=_WRUW_fs1g8" rel="noopener" class="external-link" href="https://www.youtube.com/watch?v=_WRUW_fs1g8" target="_blank">Beginner Donut Blender Tutorials, Blender Guru 2021 - part 6</a></p>
+    </body>
+</html>

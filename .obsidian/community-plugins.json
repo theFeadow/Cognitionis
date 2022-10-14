@@ -1,5 +1,6 @@
 [
   "obsidian-pandoc",
   "dataview",
-  "obsidian-git"
+  "obsidian-git",
+  "obsidian-custom-attachment-location"
 ]

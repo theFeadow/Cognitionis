@@ -1,8 +1,9 @@
 ---
-id: D#g9okk23d
+id: D#g9okk2
 date: 01/10/2022
 type: node
-aliases: [D#g9okk23d]
+status: digital
+aliases: [D#g9okk2]
 tags:
   - C
 ---
@@ -27,6 +28,7 @@ void swap(int *a, int *b)
 
 }
 ```
+
 ---
 
 #### Bibliography

@@ -1,8 +1,9 @@
 ---
-id: D#my5gb3ed
+id: D#my5gb3
 date: 06/09/2022
 type: article
-aliases: [D#my5gb3ed]
+status: digital
+aliases: [D#my5gb3]
 tags:
   - C
 ---
@@ -10,7 +11,7 @@ tags:
 # Basics of the C Language and its Compiler - part 1
 
 
-#### A simple "Hello, world!" program
+## A simple "Hello, world!" program
 
 ```c
 #include <stdio.h>
@@ -25,12 +26,9 @@ int main(void){
 > << **Header files** that end with `.h` refer to some other set of code, like a library, that we can then use in our program. We *include* them with lines like `#include <stdio.h>`, for example, for the *standard input/output* library, which contains the `printf` function. >> [^1]
 
 
-
 ------
 
-
-
-#### The `printf` function
+## The `printf` function
 
 The `printf` function allows printing to output with formatting:
 
@@ -53,13 +51,9 @@ int main(void){
 - `%li` for longs
 - `%s` for strings
 
-
-
 ------
 
-
-
-#### The `make` command
+## The `make` command
 
 To compile, one can use the `make` command, which abstracts away a lot of the details involved with compiling the C-code.
 
@@ -71,13 +65,9 @@ make hello
 
 ..will automatically look for a file named `hello.c` and will compile it to an executable file named `hello`, which can be executed with `./hello`.
 
-
-
 ------
 
-
-
-#### Header Files
+## Header Files
 
 The line..
 
@@ -89,13 +79,9 @@ is an example of using a header file.
 
 > << **Header files** that end with `.h` refer to some other set of code, like a library, that we can then use in our program. We *include* them with lines like `#include <stdio.h>`, for example, for the *standard input/output* library, which contains the `printf` function. >>
 
-
-
 ---
 
-
-
-#### Data Types
+## Data Types
 
 The types in C can be classified as follows:
 
@@ -106,13 +92,9 @@ The types in C can be classified as follows:
 
 The array and structure types are referred to collectively as 'aggregate types'.
 
-
-
 ------
 
-
-
-#### Basic Integer Types
+## Basic Integer Types
 
 Each basic integer type has a certain storage size (in bytes) **in memory**, allowing it to be assigned a certain range of values.
 
@@ -135,13 +117,9 @@ printf("Size of int data type: %d\n", sizeof(int));
 printf("Size of variable x: %d\n", sizeof(x));
 ```
 
-
-
 ---
 
-
-
-#### Basic Float Types
+## Basic Float Types
 
 The same applies for basic float types, whose storage bytes store both a 'mantissa' and an 'exponent'.
 
@@ -151,19 +129,14 @@ The same applies for basic float types, whose storage bytes store both a 'mantis
 |   double    |    8 byte    |  2.3E-308 to 1.7E+308  | 15 decimal places |
 | long double |   10 byte    | 3.4E-4932 to 1.1E+4932 | 19 decimal places |
 
-
-
 ---
 
-
-
-#### Memory, Imprecision & Overflow
+## Memory, Imprecision & Overflow
 
 Due to the **finite amount of memory** allocated for each data type, approximation and overflow errors could possibly arise in C programs.
 
 
-
-##### Imprecision
+#### Imprecision
 
 Dividing 1 by 10 and storing the output in a float then displaying the contents of the variable to a sufficient number of decimal places shows the presence of **floating-point imprecision**..
 
@@ -188,18 +161,13 @@ yields:
 > << With a finite number of bits for a `float`, we can’t represent all possible real numbers (of which there are an *infinite* number of), so the computer has to store the closest value it can. And this can lead to problems where even small differences in value add up, unless the programmer uses some other way to represent decimal values as accurately as needed. >> [^2]
 
 
-
-##### Overflow
+#### Overflow
 
 **Integer overflow** occurs when an integer's magnitude is too big that the variable holding it runs out of bits to represent it. The carry bit is discarded and therefore information is lost and/or corrupted.
 
-
-
 ---
 
-
-
-#### Prototyping Functions
+## Prototyping Functions
 
 Here's a C program with a `meow` function that is called `main`. The `meow` function is defined before the `main` function.
 
@@ -245,17 +213,14 @@ void meow(void)
 
 Now the program compiles successfully.
 
-
-
 ---
-
-[^1]: 
-[^2]: 
-
-------
 
 #### Bibliography
 
-[^prs]: [Harvard CS50 Lecture #1 Notes](https://cs50.harvard.edu/x/2021/notes/1/)
-[^s1]: [Tutorialspoint.com article on C Data Types](https://www.tutorialspoint.com/cprogramming/c_data_types.htm)
+[^1]: from [prs]
+[^2]: from [prs]
+
+[prs]: [Harvard CS50 Lecture #1 Notes](https://cs50.harvard.edu/x/2021/notes/1/)
+[s1]: [Tutorialspoint.com article on C Data Types](https://www.tutorialspoint.com/cprogramming/c_data_types.htm)
+
 

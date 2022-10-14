@@ -4,13 +4,13 @@
     "type": "split",
     "children": [
       {
-        "id": "0f0caa0a6882e4f9",
+        "id": "01380a1215a33344",
         "type": "leaf",
         "state": {
           "type": "markdown",
           "state": {
-            "file": "Documents/passing_by_ref_C.md",
-            "mode": "source",
+            "file": "Documents/blender_weight_paint.md",
+            "mode": "preview",
             "source": false
           }
         }
@@ -61,7 +61,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 274.5
+    "width": 279.5
   },
   "right": {
     "id": "0ff2ec3c76fec8f6",
@@ -77,7 +77,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Documents/passing_by_ref_C.md",
+                "file": "Documents/blender_weight_paint.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -94,7 +94,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Documents/passing_by_ref_C.md",
+                "file": "Documents/blender_weight_paint.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -117,7 +117,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Documents/passing_by_ref_C.md"
+                "file": "Documents/blender_weight_paint.md"
               }
             }
           },
@@ -134,19 +134,19 @@
       }
     ],
     "direction": "horizontal",
-    "width": 314.5
+    "width": 319.2157287597656
   },
-  "active": "0f0caa0a6882e4f9",
+  "active": "01380a1215a33344",
   "lastOpenFiles": [
-    "Documents/passing_by_ref_C.md",
-    "Documents/basics_of_C_2.md",
-    "Old/EECS/InfoSec/VPN's/what_is_a_vpn.md",
-    "Old/EECS/InfoSec/test_1.md",
-    "Old/EECS/InfoSec/VPN's/openVPN.md",
-    "Old/EECS/InfoSec/dns_leaks.md",
-    "Old/EECS/InfoSec/Linux Basics/list_command.md",
-    "Uni/Semester 7/gsm-usrp/openbts_source/openbts/README.APIs.md",
-    "Uni/Semester 7/gsm-usrp/dev/README.md",
-    "Documents/basics_of_C_1.md"
+    "Documents/blender_viewport.md",
+    "Documents/blender_texture_painting.md",
+    "Documents/blender_rendering.md",
+    "Documents/blender_modifiers.md",
+    "Documents/blender_modifier_order.md",
+    "Documents/blender_material_nodes_editor.md",
+    "Documents/blender_geometry_nodes.md",
+    "Documents/test.md",
+    "Documents/C_passing_by_ref.md",
+    "Documents/C_basics_1.md"
   ]
 }

@@ -1,18 +1,19 @@
 ---
-id: D#a4tns7gj
+id: D#a4tns7
 date: 08/09/2022
 type: article
-aliases: [D#a4tns7gj]
+status: digital
+aliases: [D#a4tns7]
 tags:
   - C
 ---
 
-..this document is part of a serial document set, see previous: [[basics_of_C_1|D#my5gb3ed]]
+..this document is part of a serial document set, see previous: [[C_basics_1|D#my5gb3]]
 
 # Basics of the C Language and its Compiler - part 2
 
 
-#### Compilers
+## Compilers
 
 Previously, the `make` command was introduced as a way to compile a C-program:
 
@@ -28,13 +29,9 @@ However, `make` itself is not a compiler - it is a program that calls the actual
 
 It is thus easier to use `make` instead of `clang`, as `make` abstracts away much of the low-level details involved in the compilation process.
 
-
-
 ---
 
-
-
-#### The Compilation Process
+## The Compilation Process
 
 Compiling source code into machine code is actually made up of smaller steps, namely:
 
@@ -42,10 +39,8 @@ Compiling source code into machine code is actually made up of smaller steps, na
 - compiling
 - assembling
 - linking
-
-
-
-##### Preprocessing
+<br>
+#### Preprocessing
 
 Preprocessing generally involves lines that start with a `#` like `#include`. Including a certain header file will tell `clang` to look for that header file, since it contains relevant code and functions that we want to include in our program. `clang` will replace the headers with prototypes of functions from the libraries that were included, so we can then use them in our code.
 
@@ -76,32 +71,23 @@ int main(void)
     printf("hello, %s\n", name);
 }
 ```
+<br>
 
-
-
-##### Compiling
+#### Compiling
 
 Compiling translates **source code** into **assembly code**, which is lower-level and closer to the binary instructions that are ultimately executed directly by the computer's processor. Remember that the assembled code is **machine-dependent**, while the source code itself is not.
-
-
-
-##### Assembling
+<br>
+#### Assembling
 
 Assembling involves translating the assembly code into binary instructions that are executed directly by the CPU of the machine.
-
-
-
-##### Linking
+<br>
+#### Linking
 
 Linking involves combining previously compiled versions of libraries that were included, like `stdio.h`, with the binaries of the actual program we wrote. The output is of the linking process is one binary file - `a.out` - that is the combined machine code for the source code as well as the linked libraries.
 
-
-
 ---
 
-
-
-#### Arrays
+## Arrays
 
 In C, you don't get an `array index out of bound` error when you reference an index value larger than the array size, values from memory corresponding to bytes that come after those of the original array will be fetched instead.
 
@@ -169,13 +155,9 @@ Note that we need to keep track of the length of the array and pass it as a para
 
 Wait.. but what about strings?
 
-
-
 ---
 
-
-
-#### Strings
+## Strings
 
 - There are NO variables of type `string` in C.
 
@@ -212,10 +194,9 @@ Now to output a string, one can use the `printf()` function together with the fo
 char greetings[] = "Hello World!";
 printf("%s", greetings);
 ```
+<br>
 
-
-
-##### The Null Terminating Character (`'\0'`)
+#### The Null Terminating Character (`'\0'`)
 
 Previously, we established that creating an array in C does not give it an "inherent size". We've also established that, by using character arrays, you can manipulate strings and print them out. But, how does the "printer" know when to stop? For example, when we say:
 
@@ -268,9 +249,7 @@ n
 
 ---
 
-
-
-#### Command-line Arguments
+## Command-line Arguments
 
 We can also pass "command-line arguments" when running a compiled program from the command-line.
 
@@ -286,7 +265,6 @@ The variable`argc` and the array `argv` will get automatically populated when we
 - `argc` holds the *argument vector* - the arguments themselves, obviously
 
 I just told a white lie, `argc` doesn't actually hold the argument count, it holds the argument count PLUS ONE.. because it stores the name of the program itself in the first index.. so if only 1 argument is passed, `argc` will be equal to 2.
-
 
 
 ```C
@@ -322,22 +300,14 @@ One argument expected
 ```
 
 
-
 > << You pass all the command line arguments separated by a space, but if argument itself has a space then you can pass such arguments by putting them inside double quotes "" or single quotes ''. >>
-
-
-
----
-
-[^1]: 
-[^2]: 
 
 ---
 
 #### Bibliography
 
-test?
+[prs]: [Harvard CS50 Lecture #2 Notes](https://cs50.harvard.edu/x/2021/notes/2/)
+[s1]: [w3schools.com article on C Strings](https://www.w3schools.com/c/c_strings.php)
+[s2]: [tutorialspoint.com article on command-line arguments](https://www.tutorialspoint.com/cprogramming/c_command_line_arguments.htm)
 
-[^prs]: [Harvard CS50 Lecture #2 Notes](https://cs50.harvard.edu/x/2021/notes/2/)
-[^s1]: [w3schools.com article on C Strings](https://www.w3schools.com/c/c_strings.php)
-[^s2]: [tutorialspoint.com article on command-line arguments](https://www.tutorialspoint.com/cprogramming/c_command_line_arguments.htm)
+---
